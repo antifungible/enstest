@@ -5,7 +5,7 @@ CSS
 */
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Arial;
     font-size: 17px;
     font-weight: 300;
     overflow-x: hidden;
@@ -326,7 +326,7 @@ textarea {
 
 @media (max-width: 460px) {
     .tm-logo { margin-right: 15px; }
-    .tm-sitename { font-size: 1.8rem; }
+    .tm-sitename { font-size: 1.8rem; font-family:Tahoma; }
     .tm-slogon { font-size: 0.8rem; }
 }
 
