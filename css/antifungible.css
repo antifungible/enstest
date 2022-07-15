@@ -5,7 +5,7 @@ CSS
 */
 
 body {
-    font-family: Arial,Calibri;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 17px;
     font-weight: 300;
     overflow-x: hidden;
@@ -337,7 +337,7 @@ textarea {
     .tm-service-img { margin-right: 0; }
     .tm-service-img-r { margin-left: 0; }
 }
-/*****************/
+/******* Carousel CSS **********/
 * {box-sizing: border-box;}
 body {font-family: Verdana, sans-serif;}
 .mySlides {display: none;}
@@ -348,7 +348,7 @@ img {vertical-align: middle;}
   max-width: 208px;
   position: relative;
   margin: auto;
-  margin-left: 150px;
+  margin-left: 100px;
   border: 4px white solid;
 }
 
