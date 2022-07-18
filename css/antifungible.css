@@ -5,7 +5,7 @@ CSS
 */
 
 body {
-    font-family: Arial;
+    font-family: Calibri,Arial;
     font-size: 17px;
     font-weight: 300;
     overflow-x: hidden;
@@ -349,7 +349,7 @@ img {vertical-align: middle;}
   max-width: 208px;
   position: relative;
   margin: auto;
-  margin-left: 130px;
+  margin-left: 100px;
   border: 4px white solid;
 }
 
