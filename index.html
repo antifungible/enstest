@@ -11,6 +11,9 @@
     <link href="css/bootstrap.min.css" rel="stylesheet" /> <!-- https://getbootstrap.com/ -->
     <link href="fontawesome/css/all.min.css" rel="stylesheet" /> <!-- https://fontawesome.com/ -->
     <link href="css/antifungible.css" rel="stylesheet" />
+	<script src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.18.0.min.js"></script>
+    <script type="text/javascript" src="https://pubnub.github.io/eon/v/eon/1.0.0/eon.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://pubnub.github.io/eon/v/eon/1.0.0/eon.css"/>
 <!--
 
 Created July 14 2022
@@ -27,8 +30,8 @@ Created July 14 2022
                     <div class="tm-site-header media">
                         
                         <div class="media-body">
-                           <h1 class="tm-sitename text-uppercase" style="font-family:Monospace;"><img src="img/WOWG.png" width=50 style="border: 2px white solid;"/>&nbsp;&nbsp;ANTIFUNGIBLE.ETH</h1>
-                            <div style="font-size:14px; font-style: italic; margin-left: 90px;margin-top:-10px;font-family:Monospace;">0xFc03C7B95Fcd8a487aD0759f682078c739529D22</div>
+                           <h1 class="tm-sitename text-uppercase" style="font-family:Monospace;"><img src="img/WOWG.png" width=50 style="border: 2px white solid;"/>&nbsp;ANTIFUNGIBLE.ETH</h1>
+                            <div style="font-size:14px; font-style: italic; margin-left: 70px;padding-right: 10px; margin-top:-10px;font-family:Monospace;">0xFc03C7B95Fcd8a487aD0759f682078c739529D22</div>
 							<!-- Slideshow container -->
 
                         </div>       						
@@ -129,6 +132,7 @@ Created July 14 2022
 </div>
 
 
+
 <div style="display:none;">
   <span class="dot"></span> 
   <span class="dot"></span> 
@@ -143,7 +147,13 @@ Created July 14 2022
     <span class="dot"></span> 
   <span class="dot"></span>
 </div>
- <section class="tm-content" style="margin-left:130px;">
+
+
+    <div id="etherChart"></div>
+	
+	
+	
+ <section class="tm-content" style="margin-left:100px;">
 						
                         <a href="https://opensea.io/AntifungibleOG" class="btn btn-primary" target=_blank><img src="img/oslogo.png" width=40/>&nbsp;Opensea&nbsp;&nbsp;&nbsp;</a><br/><br/>
 						<a href="https://twitter.com/AntifungibleEth" class="btn btn-primary" target=_blank><img src="img/twitter.jpg" width=40/>&nbsp;Twitter&nbsp;&nbsp;&nbsp;</a><br/><br/>
@@ -156,7 +166,8 @@ Created July 14 2022
                    
                 </main>
             </div>
-        </div>        
+        </div>   
+		
 
         <div class="tm-row">
             <!--div class="tm-col-left text-center">            
@@ -203,6 +214,13 @@ function showSlides() {
   dots[slideIndex-1].className += " active";
   setTimeout(showSlides, 1500); // Change image every 1.5 seconds
 }
+
+
+
+
 </script>
+
+	
+
 </body>
 </html>
