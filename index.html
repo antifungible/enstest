@@ -11,33 +11,97 @@
     <link href="css/bootstrap.min.css" rel="stylesheet" /> <!-- https://getbootstrap.com/ -->
     <link href="fontawesome/css/all.min.css" rel="stylesheet" /> <!-- https://fontawesome.com/ -->
     <link href="css/antifungible.css" rel="stylesheet" />
+	
 	<script src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.18.0.min.js"></script>
-    <script type="text/javascript" src="https://pubnub.github.io/eon/v/eon/1.0.0/eon.js"></script>
+	    <script type="text/javascript" src="https://pubnub.github.io/eon/v/eon/1.0.0/eon.js"></script>
     <link type="text/css" rel="stylesheet" href="https://pubnub.github.io/eon/v/eon/1.0.0/eon.css"/>
 <!--
 
 Created July 14 2022
 
 -->
+    <!-- @dev reload the page every 20 seconds -->
+    <meta http-equiv="refresh" content="20" />
+	 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+	 <script>
+      "use strict"
+    
+      /** @settings  */
+      var settings = {
+        async: true,
+        crossDomain: true,
+        url: "https://api.txprice.com",
+        method: "GET",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+      }
 
+        /** @returns network.response  */
+      $.ajax(settings).done(function (response) {
+        console.log(response)
+        var content = response.maxPrice
+        $("#maxPrice").append(content)
+        console.log("currentBlockNumber: " + response.currentBlockNumber)
+        var blockNumber = response.blockPrices[0].blockNumber
+        $("#blockNumber").append(blockNumber)
+        var baseFeePerGas = response.blockPrices[0].baseFeePerGas
+        $("#baseFeePerGas").append(baseFeePerGas)
+
+        var msSinceLastBlock = response.msSinceLastBlock
+        console.log("msSinceLastBlock: " + response.msSinceLastBlock)
+
+        /** @note  */
+        /** @returns 99.response  */
+        var content = response.blockPrices[0].estimatedPrices[0].price
+        $("#maxFeePerGas").append(content)
+        console.log(
+          "maxFeePerGas: " +
+            response.blockPrices[0].estimatedPrices[0].price
+        )
+        var maxPriorityFeePerGas =
+          response.blockPrices[0].estimatedPrices[0].maxPriorityFeePerGas
+        $("#maxPriorityFeePerGas").append(maxPriorityFeePerGas)
+        console.log(
+          "maxPriorityFeePerGas: " +
+            response.blockPrices[0].estimatedPrices[0].maxPriorityFeePerGas
+        )
+
+        /** @note  */
+        /** @returns 95.response  */
+        var content = response.blockPrices[0].estimatedPrices[2].price
+        $("#maxFeePerGas_95").append(content)
+        console.log(
+          "maxFeePerGas_95: " +
+            response.blockPrices[0].estimatedPrices[2].price
+        )
+        var maxPriorityFeePerGas_95 =
+          response.blockPrices[0].estimatedPrices[2].maxPriorityFeePerGas
+        $("#maxPriorityFeePerGas_95").append(maxPriorityFeePerGas)
+        console.log(
+          "maxPriorityFeePerGas_95: " +
+            response.blockPrices[0].estimatedPrices[2].maxPriorityFeePerGas
+        )
+      })
+    </script>
 </head>
 
-<body>
+<body onload="change_time()">
     <div class="tm-container">        
         <div>
             <div class="tm-row pt-4">
                 <div class="tm-col-left">
                     <div class="tm-site-header media">
                         
-                        <div class="media-body">
-                           <h1 class="tm-sitename text-uppercase" style="font-family:Monospace;"><img src="img/WOWG.png" width=50 style="border: 2px white solid;"/>&nbsp;ANTIFUNGIBLE.ETH</h1>
-                            <div style="font-size:14px; font-style: italic; margin-left: 70px;padding-right: 10px; margin-top:-10px;font-family:Monospace;">0xFc03C7B95Fcd8a487aD0759f682078c739529D22</div>
+                       <div class="media-body" style="background-color:#333333;padding:10px;border:1px dotted pink;">
+                           <h1 class="tm-sitename text-uppercase" style="font-family:monospace;"><img src="img/WOWG.png" width=50 style="border: 2px white solid;"/>&nbsp;ANTIFUNGIBLE.ETH</h1>
+                            <div style="font-size:14px; font-style: italic; margin-left: 70px;padding-left:0px; margin-top:-10px;font-family:Monospace;padding-bottom:10px;">0xFc03C7B95Fcd8a487aD0759f682078c739529D22</div>
 							<!-- Slideshow container -->
-
-                        </div>       						
+    <table style="margin-left:70px;padding-top:5px;padding-bottom:5px;background-color:white;color:black;border:1px solid grey;"><tr><td><td id="maxFeePerGas_95" >GWEI: </td><td>&nbsp;|</td><td id="ethprice">ETH: $</td><td>&nbsp;|</td><td id="btcprice">BTC: $</td></tr></table><div style="padding-left:70px;font-style:italic;font-size:8pt;">Updated every 20 seconds...</div>
+                        </div>           						
                     </div>
                 </div>
-						
+				  
+
 						
                 <!--div class="tm-col-right">
                     <nav class="navbar navbar-expand-lg" id="tm-main-nav">
@@ -70,62 +134,62 @@ Created July 14 2022
 <div class="slideshow-container">
 
 <div class="mySlides fade">
-  <div class="numbertext">1 / 12</div>
+  <div class="numbertext"></div>
   <img src="img/Jean3.jpg" style="width:200px;">
 </div>
 
 <div class="mySlides fade">
-  <div class="numbertext">2 / 12</div>
+  <div class="numbertext"></div>
   <img src="img/HighQualityJean.jfif" style="width:200px;">
 </div>
 
 <div class="mySlides fade">
-  <div class="numbertext">3 / 12</div>
+  <div class="numbertext"></div>
   <img src="img/WOWG.png" style="width:200px;">
 </div>
 
 <div class="mySlides fade">
-  <div class="numbertext">4 / 12</div>
+  <div class="numbertext"></div>
   <img src="img/Yolo1.png" style="width:200px;">
 </div>
 
 <div class="mySlides fade">
-  <div class="numbertext">5 / 12</div>
+  <div class="numbertext"></div>
   <img src="img/Yolo3.png" style="width:200px;">
 </div>
 
 <div class="mySlides fade">
-  <div class="numbertext">6 / 12</div>
+  <div class="numbertext"></div>
   <img src="img/Yolo2.png" style="width:200px;">
 </div>
 
 <div class="mySlides fade">
-  <div class="numbertext">7 / 12</div>
+  <div class="numbertext"></div>
   <img src="img/YOW.png" style="width:200px;">
 </div>
 
 <div class="mySlides fade">
-  <div class="numbertext">8 / 12</div>
+  <div class="numbertext"></div>
   <img src="img/WWW2.png" style="width:200px;">
 </div>
 
 <div class="mySlides fade">
-  <div class="numbertext">9 / 12</div>
+  <div class="numbertext"></div>
   <img src="img/WOMAN.png" style="width:200px;">
 </div>
 
 <div class="mySlides fade">
-  <div class="numbertext">10 / 12</div>
+  <div class="numbertext"></div>
   <img src="img/Froggy.png" style="width:200px;">
 </div>
 
 <div class="mySlides fade">
-  <div class="numbertext">11 / 12</div>
+  <div class="numbertext"></div>
   <img src="img/floatboat.png" style="width:200px;">
 </div>
 
 <div class="mySlides fade">
-  <div class="numbertext">12 / 12</div>
+  <div class="numbertext"></div>
   <img src="img/Notyourbro.png" style="width:200px;">
 </div>
 
@@ -139,19 +203,15 @@ Created July 14 2022
   <span class="dot"></span>  
   <span class="dot"></span> 
   <span class="dot"></span>
-    <span class="dot"></span> 
+  <span class="dot"></span> 
   <span class="dot"></span> 
   <span class="dot"></span>  
   <span class="dot"></span> 
   <span class="dot"></span>
-    <span class="dot"></span> 
+  <span class="dot"></span> 
   <span class="dot"></span>
 </div>
 
-
-    <div id="etherChart"></div>
-	
-	
 	
  <section class="tm-content" style="margin-left:100px;">
 						
@@ -159,7 +219,6 @@ Created July 14 2022
 						<a href="https://twitter.com/AntifungibleEth" class="btn btn-primary" target=_blank><img src="img/twitter.jpg" width=40/>&nbsp;Twitter&nbsp;&nbsp;&nbsp;</a><br/><br/>
 						<a href="https://etherscan.io/address/0xFc03C7B95Fcd8a487aD0759f682078c739529D22" class="btn btn-primary" target=_blank><img src="img/etherscan.png" width=40/>Etherscan&nbsp;&nbsp;</a><br/><br/>
                     </section>
-					
             <div class="tm-row" style="margin-top:-280px;">
                 <div class="tm-col-left"></div>
                 <main class="tm-col-right">
@@ -220,7 +279,151 @@ function showSlides() {
 
 </script>
 
+	 <script type="text/javascript">
+      "use strict"
+      function change_time() {
+        var d = new Date()
+        var curr_hour = d.getHours()
+        var curr_min = d.getMinutes()
+        var curr_sec = d.getSeconds()
+        if (curr_hour > 12) curr_hour = curr_hour - 12
+        document.getElementById("time").innerHTML =
+          curr_hour + ":" + curr_min + ":" + curr_sec
+      }
+      change_time()
+    </script>
 	
+	 <script>
+
+        var pubnub = new PubNub({
+            publishKey:   'demo', // replace with your own pub-key
+            subscribeKey: 'demo' // replace with your own sub-key
+        });
+        var xhr = new XMLHttpRequest();
+        
+        var pointLimit = 100;
+        var useLabels = false;
+
+        function processRequest(e) {
+             if (xhr.readyState == 4 && xhr.status == 200) {
+                var response = JSON.parse(xhr.responseText);
+                console.log(response);
+				
+				var ethcontent = response.ETH.USD.toFixed(2)
+				$("#ethprice").append(ethcontent)
+
+				var btccontent = response.BTC.USD.toFixed(2)
+				$("#btcprice").append(btccontent)
+				
+                pubnub.publish({
+                    channel: 'bitcoin-eon',
+                    message: {
+                      eon: {
+                        'BitCoin': response.BTC.USD.toFixed(2)
+                      }
+                    }
+                  });
+
+                pubnub.publish({
+                    channel: 'ether-eon',
+                    message: {
+                      eon: {
+                        'Ether': response.ETH.USD.toFixed(2)
+                      }
+                    }
+                  });
+
+                pubnub.publish({
+                    channel: 'litecoin-eon',
+                    message: {
+                      eon: {
+                        'LiteCoin': response.LTC.USD.toFixed(2)
+                      }
+                    }
+                  });
+
+
+                 //var notification = new Notification("Hi there!");
+            }
+        }
+
+        eon.chart({
+          channels: ['bitcoin-eon'],
+          history: true,
+          flow: true,
+          limit: pointLimit,
+          pubnub: pubnub,
+          generate: {
+            bindto: '#bitcoinChart',
+            data: {
+              labels: useLabels,
+              type: 'spline'
+            },
+            axis: {
+                y: {
+                    padding: {top:200, bottom:100}
+                }
+            }
+          }
+        });
+
+        eon.chart({
+          channels: ['ether-eon'],
+          history: true,
+          flow: true,
+          limit: pointLimit,
+          pubnub: pubnub,
+          generate: {
+            bindto: '#etherChart',
+            data: {
+              labels: useLabels,
+              type: 'spline'
+            },
+            axis: {
+                y: {
+                    padding: {top:200, bottom:100}
+                }
+            }
+          }
+        });
+
+        eon.chart({
+          channels: ['litecoin-eon'],
+          history: true,
+          flow: true,
+          limit: pointLimit,
+          pubnub: pubnub,
+          generate: {
+            bindto: '#liteCoinChart',
+            data: {
+              labels: useLabels,
+              type: 'spline'
+            },
+            axis: {
+                y: {
+                    padding: {top:200, bottom:100}
+                }
+            }
+          }
+        });
+
+        function mainApp() {
+            if (Notification.permission !== "denied") {
+                Notification.requestPermission(function (permission) {});
+              }
+ xhr.open('GET', 'https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH,LTC&tsyms=USD', true)
+                xhr.send();
+                xhr.onreadystatechange = processRequest;
+            /*setInterval(function(){
+                
+                xhr.open('GET', 'https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH,LTC&tsyms=USD', true)
+                xhr.send();
+                xhr.onreadystatechange = processRequest;
+            }, 14000)*/
+        };
+        mainApp();
+
+    </script>
 
 </body>
 </html>
