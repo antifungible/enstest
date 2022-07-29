@@ -227,6 +227,8 @@ Created July 14 2022
 					 
 					   <tr><td style="padding:10px;border:1px dotted pink;font-size:8.5pt;"><a href="https://opensea.io/collection/soulda16club" target="_blank"><img id="price8collimg" width=20/>&nbsp;Soulda16</a></td><td id="price8" style="padding:10px;border:1px dotted pink;font-size:8.5pt;"></td><td id="change8" style="padding:10px;border:1px dotted pink;font-size:8.5pt;"></td><td id="onedayavg8" style="padding:10px;border:1px dotted pink;font-size:8.5pt;"></td><td id="anotherchange8" style="padding:10px;border:1px dotted pink;font-size:8.5pt;"></td><td id="sevendayavg8" style="padding:10px;border:1px dotted pink;font-size:8.5pt;"></td><td id="thirtydaychange8" style="padding:10px;border:1px dotted pink;font-size:8.5pt;"></td><td id="monthavg8" style="padding:10px;border:1px dotted pink;font-size:8.5pt;"></td><td id="owners8" style="padding:10px;border:1px dotted pink;font-size:8.5pt;"></td><td id="count8" style="padding:10px;border:1px dotted pink;font-size:8.5pt;"></td></tr>	
 					   
+					    <tr><td style="padding:10px;border:1px dotted pink;font-size:8.5pt;"><a href="https://opensea.io/collection/stickmentoys" target="_blank"><img id="price23collimg" width=20/>&nbsp;Stickmen Toys</a></td><td id="price22" style="padding:10px;border:1px dotted pink;font-size:8.5pt;"></td><td id="change22" style="padding:10px;border:1px dotted pink;font-size:8.5pt;"></td><td id="onedayavg22" style="padding:10px;border:1px dotted pink;font-size:8.5pt;"></td><td id="anotherchange22" style="padding:10px;border:1px dotted pink;font-size:8.5pt;"></td><td id="sevendayavg22" style="padding:10px;border:1px dotted pink;font-size:8.5pt;"></td><td id="thirtydaychange22" style="padding:10px;border:1px dotted pink;font-size:8.5pt;"></td><td id="monthavg22" style="padding:10px;border:1px dotted pink;font-size:8.5pt;"></td><td id="owners22" style="padding:10px;border:1px dotted pink;font-size:8.5pt;"></td><td id="count22" style="padding:10px;border:1px dotted pink;font-size:8.5pt;"></td></tr>
+						
 					   <tr><td style="padding:11px;border:1px dotted pink;font-size:8.5pt;"><a href="https://opensea.io/collection/womenandweapons" target="_blank"><img id="price11collimg" width=20/>&nbsp;Women & Weapons</a></td><td id="price11" style="padding:11px;border:1px dotted pink;font-size:8.5pt;"></td><td id="change11" style="padding:11px;border:1px dotted pink;font-size:8.5pt;"></td><td id="onedayavg11" style="padding:10px;border:1px dotted pink;font-size:8.5pt;"></td><td id="anotherchange11" style="padding:11px;border:1px dotted pink;font-size:8.5pt;"></td><td id="sevendayavg11" style="padding:10px;border:1px dotted pink;font-size:8.5pt;"></td><td id="thirtydaychange11" style="padding:10px;border:1px dotted pink;font-size:8.5pt;"></td><td id="monthavg11" style="padding:10px;border:1px dotted pink;font-size:8.5pt;"></td><td id="owners11" style="padding:11px;border:1px dotted pink;font-size:8.5pt;"></td><td id="count11" style="padding:11px;border:1px dotted pink;font-size:8.5pt;"></td></tr>	
 					   
 				      <tr><td style="padding:10px;border:1px dotted pink;font-size:8.5pt;"><a href="https://opensea.io/collection/world-of-women-galaxy" target="_blank"><img id="price3collimg" width=20/>&nbsp;World of Women Galaxy</a></td><td id="price3" style="padding:10px;border:1px dotted pink;font-size:8.5pt;"></td><td id="change3" style="padding:10px;border:1px dotted pink;font-size:8.5pt;"></td><td id="onedayavg3" style="padding:10px;border:1px dotted pink;font-size:8.5pt;"></td><td id="anotherchange3" style="padding:10px;border:1px dotted pink;font-size:8.5pt;"></td><td id="sevendayavg3" style="padding:10px;border:1px dotted pink;font-size:8.5pt;"></td><td id="thirtydaychange3" style="padding:10px;border:1px dotted pink;font-size:8.5pt;"></td><td id="monthavg3" style="padding:10px;border:1px dotted pink;font-size:8.5pt;"></td><td id="owners3" style="padding:10px;border:1px dotted pink;font-size:8.5pt;"></td><td id="count3" style="padding:10px;border:1px dotted pink;font-size:8.5pt;"></td></tr>
@@ -758,6 +760,7 @@ function showSlides() {
         mainApp11();
 	</script>
 	
+	
 	<script>
 	
 	 var xhr12 = new XMLHttpRequest();
@@ -1019,6 +1022,72 @@ function showSlides() {
         mainApp21();
 	</script>
 	
+			<script>
+	
+	 var xhr22 = new XMLHttpRequest();
+        
+        function processRequest(e) {
+             if (xhr22.readyState == 4 && xhr22.status == 200) {
+                var response = JSON.parse(xhr22.responseText);
+                console.log(response);
+				
+				var price22 = response.stats.floor_price.toFixed(3)
+				$("#price22").append(price22)
+				var change22 = response.stats.one_day_change.toFixed(2)
+				$("#change22").append(change22)
+				var anotherchange22 = response.stats.seven_day_change.toFixed(2)
+				$("#anotherchange22").append(anotherchange22)
+				var owners22 = response.stats.num_owners.toFixed(0)
+				$("#owners22").append(owners22)
+				var count22 = response.stats.total_supply.toFixed(0)
+				$("#count22").append(count22)
+				var thirtydaychange22 = response.stats.thirty_day_change.toFixed(2)
+				$("#thirtydaychange22").append(thirtydaychange22)
+				var onedayavg22 = response.stats.one_day_average_price.toFixed(2)
+				$("#onedayavg22").append(onedayavg22)
+				var sevendayavg22 = response.stats.seven_day_average_price.toFixed(2)
+				$("#sevendayavg22").append(sevendayavg22)
+				var monthavg22 = response.stats.thirty_day_average_price.toFixed(2)
+				$("#monthavg22").append(monthavg22)
+			}
+		}			
+				
+	function mainApp22() {
+            if (Notification.permission !== "denied") {
+                Notification.requestPermission(function (permission) {});
+              }
+				xhr22.open('GET', 'https://api.opensea.io/api/v1/collection/stickmentoys/stats/?format=json', true)
+                xhr22.send();
+                xhr22.onreadystatechange = processRequest;
+        };
+        mainApp22();
+	</script>
+	
+		<script>
+	
+	 var xhr23 = new XMLHttpRequest();
+
+        function processRequest(e) {
+             if (xhr23.readyState == 4 && xhr23.status == 200) {
+                var response = JSON.parse(xhr23.responseText);
+                console.log(response);
+				
+				var price23 = response.collection.image_url
+				//$("price2collimg").append(price23)
+				document.getElementById('price23collimg').src = price23
+			}
+		}			
+				
+	function mainApp23() {
+            if (Notification.permission !== "denied") {
+                Notification.requestPermission(function (permission) {});
+              }
+				xhr23.open('GET', 'https://api.opensea.io/api/v1/collection/stickmentoys/?format=json', true)
+                xhr23.send();
+                xhr23.onreadystatechange = processRequest;
+        };
+        mainApp23();
+	</script>
 	
 	<script>
 	/* 
