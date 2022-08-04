@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Antifungible.eth - My NFT Rarity</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet" /> <!-- https://fonts.google.com/ -->
+	  <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400" rel="stylesheet" /> <!-- https://fonts.google.com/ -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" /> <!-- https://getbootstrap.com/ -->
+    <link href="fontawesome/css/all.min.css" rel="stylesheet" /> <!-- https://fontawesome.com/ -->
+    <link href="css/antifungible.css" rel="stylesheet" />
+	
+	<script src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.18.0.min.js"></script>
+	    <script type="text/javascript" src="https://pubnub.github.io/eon/v/eon/1.0.0/eon.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://pubnub.github.io/eon/v/eon/1.0.0/eon.css"/>
+<!--
+
+Created July 14 2022
+
+-->
+    <!-- @dev reload the page every 20 seconds -->
+    <meta http-equiv="refresh" content="20" />
+	 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+	 <script>
+      "use strict"
+    
+      /** @settings  */
+      var settings = {
+        async: true,
+        crossDomain: true,
+        url: "https://api.txprice.com",
+        method: "GET",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+      }
+
+        /** @returns network.response  */
+      $.ajax(settings).done(function (response) {
+        console.log(response)
+        var content = response.maxPrice
+        $("#maxPrice").append(content)
+        console.log("currentBlockNumber: " + response.currentBlockNumber)
+        var blockNumber = response.blockPrices[0].blockNumber
+        $("#blockNumber").append(blockNumber)
+        var baseFeePerGas = response.blockPrices[0].baseFeePerGas
+        $("#baseFeePerGas").append(baseFeePerGas)
+
+        var msSinceLastBlock = response.msSinceLastBlock
+        console.log("msSinceLastBlock: " + response.msSinceLastBlock)
+
+        /** @note  */
+        /** @returns 99.response  */
+        var content = response.blockPrices[0].estimatedPrices[0].price
+        $("#maxFeePerGas").append(content)
+        console.log(
+          "maxFeePerGas: " +
+            response.blockPrices[0].estimatedPrices[0].price
+        )
+        var maxPriorityFeePerGas =
+          response.blockPrices[0].estimatedPrices[0].maxPriorityFeePerGas
+        $("#maxPriorityFeePerGas").append(maxPriorityFeePerGas)
+        console.log(
+          "maxPriorityFeePerGas: " +
+            response.blockPrices[0].estimatedPrices[0].maxPriorityFeePerGas
+        )
+
+        /** @note  */
+        /** @returns 95.response  */
+        var content = response.blockPrices[0].estimatedPrices[2].price
+        $("#maxFeePerGas_95").append(content)
+        console.log(
+          "maxFeePerGas_95: " +
+            response.blockPrices[0].estimatedPrices[2].price
+        )
+        var maxPriorityFeePerGas_95 =
+          response.blockPrices[0].estimatedPrices[2].maxPriorityFeePerGas
+        $("#maxPriorityFeePerGas_95").append(maxPriorityFeePerGas)
+        console.log(
+          "maxPriorityFeePerGas_95: " +
+            response.blockPrices[0].estimatedPrices[2].maxPriorityFeePerGas
+        )
+      })
+    </script>
+</head>
+
+<body onload="change_time()">
+    <div class="tm-container">        
+        <div>
+            <div class="tm-row pt-4">
+                <div class="tm-col-left">
+                    <div class="tm-site-header media">
+                        
+                       <div class="media-body" style="background-color:#333333;padding:10px;border:1px dotted pink;">
+                           <h1 class="tm-sitename text-uppercase" style="font-family:monospace;"><img src="img/WOWG.png" width=50 style="border: 2px white solid;"/>&nbsp;ANTIFUNGIBLE.ETH</h1>
+                            <div style="font-size:14px; font-style: italic; margin-left: 70px;padding-left:0px; margin-top:-10px;font-family:Monospace;padding-bottom:5px;">0xFc03C7B95Fcd8a487aD0759f682078c739529D22</div>
+							<!-- Slideshow container -->
+    <table id = "gwei"><tr><td><td id="maxFeePerGas_95" >GWEI: </td><td>&nbsp;|&nbsp;</td><td id="ethprice">ETH: $</td><td>&nbsp;|&nbsp;</td><td id="btcprice">BTC: $</td></tr></table>
+                        </div>           						
+                    </div>
+                </div>
+				  
+
+						
+                <div class="tm-col-right">
+				<table style="background-color:#10a7e8;padding:0px;">
+				<tr>
+				<td style="padding:10px;font-color:white;color:white;border:white 1px solid;"><a href="index.html" style="color:white;">
+				Home
+				</a>
+				</td>
+				<td style="padding:10px;font-color:white;color:white;border:white 1px solid;"><a href="loveless.html" style="color:white;">
+				Loveless
+				</a>
+				</td>
+				<td style="padding:10px;font-color:white;color:white;border:white 1px solid;"><a href="nftrarity.html" style="color:white;">
+				My NFT Rarity
+				</a>
+				</td>
+				</tr>
+				</table>
+                </div>
+            </div>
+ <br/>  
+
+<div class="slideshow-container">
+
+<div class="mySlides fade">
+  <div class="numbertext"></div>
+  <img src="img/Jean3.jpg" style="width:200px;">
+</div>
+
+<div class="mySlides fade">
+  <div class="numbertext"></div>
+  <img src="img/HighQualityJean.jfif" style="width:200px;">
+</div>
+
+<div class="mySlides fade">
+  <div class="numbertext"></div>
+  <img src="img/WOWG.png" style="width:200px;">
+</div>
+
+<div class="mySlides fade">
+  <div class="numbertext"></div>
+  <img src="img/Yolo1.png" style="width:200px;">
+</div>
+
+<div class="mySlides fade">
+  <div class="numbertext"></div>
+  <img src="img/Yolo3.png" style="width:200px;">
+</div>
+
+<div class="mySlides fade">
+  <div class="numbertext"></div>
+  <img src="img/Yolo2.png" style="width:200px;">
+</div>
+
+<div class="mySlides fade">
+  <div class="numbertext"></div>
+  <img src="img/YOW.png" style="width:200px;">
+</div>
+
+<div class="mySlides fade">
+  <div class="numbertext"></div>
+  <img src="img/WWW2.png" style="width:200px;">
+</div>
+
+<div class="mySlides fade">
+  <div class="numbertext"></div>
+  <img src="img/WOMAN.png" style="width:200px;">
+</div>
+
+<div class="mySlides fade">
+  <div class="numbertext"></div>
+  <img src="img/Froggy.png" style="width:200px;">
+</div>
+
+<div class="mySlides fade">
+  <div class="numbertext"></div>
+  <img src="img/floatboat.png" style="width:200px;">
+</div>
+
+<div class="mySlides fade">
+  <div class="numbertext"></div>
+  <img src="img/Notyourbro.png" style="width:200px;">
+</div>
+
+</div>
+
+
+
+<div style="display:none;">
+  <span class="dot"></span> 
+  <span class="dot"></span> 
+  <span class="dot"></span>  
+  <span class="dot"></span> 
+  <span class="dot"></span>
+  <span class="dot"></span> 
+  <span class="dot"></span> 
+  <span class="dot"></span>  
+  <span class="dot"></span> 
+  <span class="dot"></span>
+  <span class="dot"></span> 
+  <span class="dot"></span>
+</div>
+
+	
+ <section class="tm-content" style="margin-left:100px;">
+						
+                        <a href="https://opensea.io/AntifungibleOG" class="btn btn-primary" target=_blank><img src="img/oslogo.png" width=40/>&nbsp;Opensea&nbsp;&nbsp;&nbsp;</a><br/><br/>
+						<a href="https://twitter.com/AntifungibleEth" class="btn btn-primary" target=_blank><img src="img/twitter.jpg" width=40/>&nbsp;Twitter&nbsp;&nbsp;&nbsp;</a><br/><br/>
+						<a href="https://etherscan.io/address/0xFc03C7B95Fcd8a487aD0759f682078c739529D22" class="btn btn-primary" target=_blank><img src="img/etherscan.png" width=40/>Etherscan&nbsp;&nbsp;</a><br/><br/>
+						 <!--div id="testtrait" style ="background-color:red;"/><br/-->
+						 
+                    </section>
+            <div class="tm-row" style="margin-top:-280px;">
+                <div class="tm-col-left"></div>
+                <main class="tm-col-right">
+                   <table style="background-color:white;color:black;margin-top:-315px;margin-left:-100px;">
+				   <tr style="border:1px dotted pink;"><td style="padding:10px;">MY NFTS</td></tr>
+				   <tr><td style="padding:5px;padding-left:10px;border:1px dotted pink;font-size:8pt;background-color:#c3c3c3;">NFT</td><td style="padding:5px;border: 1px dotted pink;font-size:8pt;background-color:#c3c3c3;">RARITY SCORE</td><td style="padding:5px;border: 1px dotted pink;font-size:8pt;background-color:#c3c3c3;">24HR +/-</td><td style="padding:5px;border: 1px dotted pink;font-size:8pt;background-color:#c3c3c3;">1 DAY AVG</td><td style="padding:5px;border: 1px dotted pink;font-size:8pt;background-color:#c3c3c3;">7 DAY +/-</td><td style="padding:5px;border: 1px dotted pink;font-size:8pt;background-color:#c3c3c3;">7 DAY AVG</td><td style="padding:5px;border: 1px dotted pink;font-size:8pt;background-color:#c3c3c3;">30 DAY +/-</td><td style="padding:5px;border: 1px dotted pink;font-size:8pt;background-color:#c3c3c3;">30 DAY AVG</td><td style="padding:5px;border: 1px dotted pink;font-size:8pt;background-color:#c3c3c3;">OWNERS</td><td style="padding:5px;border: 1px dotted pink;font-size:8pt;background-color:#c3c3c3;">SUPPLY</td></tr>
+		
+					  <tr><td style="padding:10px;border:1px dotted pink;font-size:8.5pt;"><a href="https://opensea.io/assets/ethereum/0xb5643598496b159263c67bd0d25728713f5aad04/3152" target="_blank"><img src="img/yolo3.png" width=100/></a></td><td id="yolo3" style="padding:10px;border:1px dotted pink;font-size:8.5pt;"></td></tr>	
+						<tr><td style="padding:10px;border:1px dotted pink;font-size:8.5pt;"><a href="https://opensea.io/assets/ethereum/0xb5643598496b159263c67bd0d25728713f5aad04/7842" target="_blank"><img src="img/yolo2.png" width=100/></a></td><td id="yolo2" style="padding:10px;border:1px dotted pink;font-size:8.5pt;"></td></tr>
+						<tr><td style="padding:10px;border:1px dotted pink;font-size:8.5pt;"><a href="https://opensea.io/assets/ethereum/0xb5643598496b159263c67bd0d25728713f5aad04/9363" target="_blank"><img src="img/yolo1.png" width=100/></a></td><td id="yo" style="padding:10px;border:1px dotted pink;font-size:8.5pt;"></td></tr>		
+						<tr><td style="padding:10px;border:1px dotted pink;font-size:8.5pt;"><a href="https://opensea.io/assets/ethereum/0x2a459947f0ac25ec28c197f09c2d88058a83f3bb/4388" target="_blank"><img src="img/stickmen.png" width=100/></a></td><td id="stickmen" style="padding:10px;border:1px dotted pink;font-size:8.5pt;"></td></tr>	
+						<tr><td style="padding:10px;border:1px dotted pink;font-size:8.5pt;"><a href="https://opensea.io/assets/ethereum/0x338866f8ba75bb9d7a00502e11b099a2636c2c18/8591" target="_blank"><img src="img/woman.png" width=100/></a></td><td id="weapons" style="padding:10px;border:1px dotted pink;font-size:8.5pt;"></td></tr>			
+						<tr><td style="padding:10px;border:1px dotted pink;font-size:8.5pt;"><a href="https://opensea.io/assets/ethereum/0xf61f24c2d93bf2de187546b14425bf631f28d6dc/11202" target="_blank"><img src="img/wowg.png" width=100/></a></td><td id="wow" style="padding:10px;border:1px dotted pink;font-size:8.5pt;"></td></tr>		
+						<tr><td style="padding:10px;border:1px dotted pink;font-size:8.5pt;"><a href="https://opensea.io/assets/ethereum/0xa872947e420fc87d0ad56b6c296439f55c3768dc/12893" target="_blank"><img src="img/www2.png" width=100/></a></td><td id="wow2" style="padding:10px;border:1px dotted pink;font-size:8.5pt;"></td></tr>	
+						<tr><td style="padding:10px;border:1px dotted pink;font-size:8.5pt;"><a href="https://opensea.io/assets/ethereum/0x20bd0551f05dc40117d6b91dfa9f67d25307d1d8/5036" target="_blank"><img src="img/highqualityjean.jfif" width=100/></a></td><td id="jean1" style="padding:10px;border:1px dotted pink;font-size:8.5pt;"></td></tr>
+						<tr><td style="padding:10px;border:1px dotted pink;font-size:8.5pt;"><a href="https://opensea.io/assets/ethereum/0x20bd0551f05dc40117d6b91dfa9f67d25307d1d8/818" target="_blank"><img src="img/anotherbeauty.jpg" width=100/></a></td><td id="jean2" style="padding:10px;border:1px dotted pink;font-size:8.5pt;"></td></tr>	
+
+					  
+				   </table>
+                </main>
+            </div>
+        </div>   
+		
+<div style="padding-left:20px;font-style:italic;font-size:8pt;margin-top:200px;">Updated every 20 seconds...</div>
+        <div class="tm-row">
+            <!--div class="tm-col-left text-center">            
+                <ul class="tm-bg-controls-wrapper">
+                    <li class="tm-bg-control active" data-id="0"></li>
+                    <li class="tm-bg-control" data-id="1"></li>
+                    <li class="tm-bg-control" data-id="2"></li>
+                </ul>            
+            </div>        
+            <div class="tm-col-right tm-col-footer">
+                <footer class="tm-site-footer text-right">
+                    <p class="mb-0">Copyright 2022</p>
+                </footer>
+            </div--> 
+        </div>
+
+        <!-- Diagonal background design -->
+        
+		
+		<div class="tm-bg">
+            <div class="tm-bg-left"></div>
+            <div class="tm-bg-right"></div>
+        </div>
+		
+		
+    </div>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.backstretch.min.js"></script>
+    <script src="js/templatemo-script.js"></script>
+	<script>
+let slideIndex = 0;
+showSlides();
+
+function showSlides() {
+  let i;
+  let slides = document.getElementsByClassName("mySlides");
+  let dots = document.getElementsByClassName("dot");
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";  
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) {slideIndex = 1}    
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " active";
+  setTimeout(showSlides, 1500); // Change image every 1.5 seconds
+}
+
+
+
+
+</script>
+
+	 <script type="text/javascript">
+      "use strict"
+      function change_time() {
+        var d = new Date()
+        var curr_hour = d.getHours()
+        var curr_min = d.getMinutes()
+        var curr_sec = d.getSeconds()
+        if (curr_hour > 12) curr_hour = curr_hour - 12
+        document.getElementById("time").innerHTML =
+          curr_hour + ":" + curr_min + ":" + curr_sec
+      }
+      change_time()
+	</script>
+	
+	<script>
+	   var xhr = new XMLHttpRequest();
+
+        function processRequest(e) {
+             if (xhr.readyState == 4 && xhr.status == 200) {
+                var response = JSON.parse(xhr.responseText);
+                console.log(response);
+				
+				var ethcontent = response.ETH.USD.toFixed(2)
+				$("#ethprice").append(ethcontent)
+
+				var btccontent = response.BTC.USD.toFixed(2)
+				$("#btcprice").append(btccontent)
+            }
+        }
+
+        function mainApp() {
+            if (Notification.permission !== "denied") {
+                Notification.requestPermission(function (permission) {});
+              }
+				xhr.open('GET', 'https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH,LTC&tsyms=USD', true)
+                xhr.send();
+                xhr.onreadystatechange = processRequest;
+        };
+        mainApp();
+
+    </script>
+	
+		
+	
+		<script>
+	
+	 var xhr23 = new XMLHttpRequest();
+
+        function processRequest(e) {
+             if (xhr23.readyState == 4 && xhr23.status == 200) {
+                var response = JSON.parse(xhr23.responseText);
+                console.log(response);
+				
+				var price23 = response.collection.image_url
+				var smallest = 500
+				var smallesttrait
+				var traitcount
+				for(var trait in response.collection.traits){
+					for(var traitvalue in response.collection.traits[trait]){
+						if(response.collection.traits[trait][traitvalue] < smallest)
+						{
+							smallest = response.collection.traits[trait][traitvalue]
+							smallesttrait = trait + ": " + traitvalue
+						}
+						traitcount = response.collection.traits[trait][traitvalue]
+					}
+				}
+				//var raresttrait = smallest / response.stats.total_supply
+				$("#testtrait").append(smallesttrait)
+				document.getElementById('price23collimg').src = price23
+			}
+		}			
+				
+	function mainApp23() {
+            if (Notification.permission !== "denied") {
+                Notification.requestPermission(function (permission) {});
+              }
+				xhr23.open('GET', 'https://api.opensea.io/api/v1/collection/stickmentoys/?format=json', true)
+                xhr23.send();
+                xhr23.onreadystatechange = processRequest;
+        };
+        mainApp23();
+	</script>
+	
+	
+			<script>
+	
+	 var xhr24 = new XMLHttpRequest();
+
+        function processRequest(e) {
+             if (xhr24.readyState == 4 && xhr24.status == 200) {
+                var response = JSON.parse(xhr24.responseText);
+                console.log(response);
+				var trait
+				var traitcount
+				var weight = 0
+				var rarityperc
+				var rarityscore
+				//var price24 = response.collection.image_url
+				var supply = response.collection.stats.total_supply
+				var price24 = response.traits
+				for (var i = 0; i < response.traits.length; i++) {
+					trait = response.traits[i];
+					traitcount = trait.trait_count
+					rarityperc = traitcount / supply
+					rarityscore = 1 / rarityperc
+					weight = weight + rarityscore
+					//console.log(key);
+				}
+				$("#yolo3").append(weight.toFixed(2))
+				//document.getElementById('price24collimg').src = price24
+			}
+		}			
+				
+	function mainApp24() {
+            if (Notification.permission !== "denied") {
+                Notification.requestPermission(function (permission) {});
+              }
+				xhr24.open('GET', 'https://api.opensea.io/api/v1/asset/0xb5643598496b159263c67bd0d25728713f5aad04/3152', true)
+                xhr24.send();
+                xhr24.onreadystatechange = processRequest;
+        };
+        mainApp24();
+	</script>
+
+				<script>
+	
+	 var xhr25 = new XMLHttpRequest();
+
+        function processRequest(e) {
+             if (xhr25.readyState == 4 && xhr25.status == 200) {
+                var response = JSON.parse(xhr25.responseText);
+                console.log(response);
+				var trait
+				var traitcount
+				var weight = 0
+				var rarityperc
+				var rarityscore
+				//var price25 = response.collection.image_url
+				var supply = response.collection.stats.total_supply
+				var price25 = response.traits
+				for (var i = 0; i < response.traits.length; i++) {
+					trait = response.traits[i];
+					traitcount = trait.trait_count
+					rarityperc = traitcount / supply
+					rarityscore = 1 / rarityperc
+					weight = weight + rarityscore
+					//console.log(key);
+				}
+				$("#yolo2").append(weight.toFixed(2))
+				//document.getElementById('price25collimg').src = price25
+			}
+		}			
+				
+	function mainApp25() {
+            if (Notification.permission !== "denied") {
+                Notification.requestPermission(function (permission) {});
+              }
+				xhr25.open('GET', 'https://api.opensea.io/api/v1/asset/0xb5643598496b159263c67bd0d25728713f5aad04/7842', true)
+                xhr25.send();
+                xhr25.onreadystatechange = processRequest;
+        };
+        mainApp25();
+	</script>
+	
+				<script>
+	
+	 var xhr26 = new XMLHttpRequest();
+
+        function processRequest(e) {
+             if (xhr26.readyState == 4 && xhr26.status == 200) {
+                var response = JSON.parse(xhr26.responseText);
+                console.log(response);
+				var trait
+				var traitcount
+				var weight = 0
+				var rarityperc
+				var rarityscore
+				//var price26 = response.collection.image_url
+				var supply = response.collection.stats.total_supply
+				var price26 = response.traits
+				for (var i = 0; i < response.traits.length; i++) {
+					trait = response.traits[i];
+					traitcount = trait.trait_count
+					rarityperc = traitcount / supply
+					rarityscore = 1 / rarityperc
+					weight = weight + rarityscore
+					//console.log(key);
+				}
+				$("#yo").append(weight.toFixed(2))
+				//document.getElementById('price26collimg').src = price26
+			}
+		}			
+				
+	function mainApp26() {
+            if (Notification.permission !== "denied") {
+                Notification.requestPermission(function (permission) {});
+              }
+				xhr26.open('GET', 'https://api.opensea.io/api/v1/asset/0xb5643598496b159263c67bd0d25728713f5aad04/9363', true)
+                xhr26.send();
+                xhr26.onreadystatechange = processRequest;
+        };
+        mainApp26();
+	</script>
+	
+				<script>
+	
+	 var xhr27 = new XMLHttpRequest();
+
+        function processRequest(e) {
+             if (xhr27.readyState == 4 && xhr27.status == 200) {
+                var response = JSON.parse(xhr27.responseText);
+                console.log(response);
+				var trait
+				var traitcount
+				var weight = 0
+				var rarityperc
+				var rarityscore
+				//var price27 = response.collection.image_url
+				var supply = response.collection.stats.total_supply
+				var price27 = response.traits
+				for (var i = 0; i < response.traits.length; i++) {
+					trait = response.traits[i];
+					traitcount = trait.trait_count
+					rarityperc = traitcount / supply
+					rarityscore = 1 / rarityperc
+					weight = weight + rarityscore
+					//console.log(key);
+				}
+				if(weight.toFixed(2) < 0 || weight.toFixed(2) > 1000000)
+				{
+					$("#stickmen").append("Not available yet")
+				}
+				else{
+					$("#stickmen").append(weight.toFixed(2))
+				}
+				//document.getElementById('price27collimg').src = price27
+			}
+		}			
+				
+	function mainApp27() {
+            if (Notification.permission !== "denied") {
+                Notification.requestPermission(function (permission) {});
+              }
+				xhr27.open('GET', 'https://api.opensea.io/api/v1/asset/0x2a459947f0ac25ec28c197f09c2d88058a83f3bb/4388', true)
+                xhr27.send();
+                xhr27.onreadystatechange = processRequest;
+        };
+        mainApp27();
+	</script>
+	
+				<script>
+	
+	 var xhr28 = new XMLHttpRequest();
+
+        function processRequest(e) {
+             if (xhr28.readyState == 4 && xhr28.status == 200) {
+                var response = JSON.parse(xhr28.responseText);
+                console.log(response);
+				var trait
+				var traitcount
+				var weight = 0
+				var rarityperc
+				var rarityscore
+				//var price28 = response.collection.image_url
+				var supply = response.collection.stats.total_supply
+				var price28 = response.traits
+				for (var i = 0; i < response.traits.length; i++) {
+					trait = response.traits[i];
+					traitcount = trait.trait_count
+					rarityperc = traitcount / supply
+					rarityscore = 1 / rarityperc
+					weight = weight + rarityscore
+					//console.log(key);
+				}
+				$("#weapons").append(weight.toFixed(2))
+				//document.getElementById('price28collimg').src = price28
+			}
+		}			
+				
+	function mainApp28() {
+            if (Notification.permission !== "denied") {
+                Notification.requestPermission(function (permission) {});
+              }
+				xhr28.open('GET', 'https://api.opensea.io/api/v1/asset/0x338866f8ba75bb9d7a00502e11b099a2636c2c18/8591', true)
+                xhr28.send();
+                xhr28.onreadystatechange = processRequest;
+        };
+        mainApp28();
+	</script>
+	
+				<script>
+	
+	 var xhr29 = new XMLHttpRequest();
+
+        function processRequest(e) {
+             if (xhr29.readyState == 4 && xhr29.status == 200) {
+                var response = JSON.parse(xhr29.responseText);
+                console.log(response);
+				var trait
+				var traitcount
+				var weight = 0
+				var rarityperc
+				var rarityscore
+				//var price29 = response.collection.image_url
+				var supply = response.collection.stats.total_supply
+				var price29 = response.traits
+				for (var i = 0; i < response.traits.length; i++) {
+					trait = response.traits[i];
+					traitcount = trait.trait_count
+					rarityperc = traitcount / supply
+					rarityscore = 1 / rarityperc
+					weight = weight + rarityscore
+					//console.log(key);
+				}
+				$("#wow").append(weight.toFixed(2))
+				//document.getElementById('price29collimg').src = price29
+			}
+		}			
+				
+	function mainApp29() {
+            if (Notification.permission !== "denied") {
+                Notification.requestPermission(function (permission) {});
+              }
+				xhr29.open('GET', 'https://api.opensea.io/api/v1/asset/0xf61f24c2d93bf2de187546b14425bf631f28d6dc/11202', true)
+                xhr29.send();
+                xhr29.onreadystatechange = processRequest;
+        };
+        mainApp29();
+	</script>
+	
+				<script>
+	
+	 var xhr30 = new XMLHttpRequest();
+
+        function processRequest(e) {
+             if (xhr30.readyState == 4 && xhr30.status == 200) {
+                var response = JSON.parse(xhr30.responseText);
+                console.log(response);
+				var trait
+				var traitcount
+				var weight = 0
+				var rarityperc
+				var rarityscore
+				//var price30 = response.collection.image_url
+				var supply = response.collection.stats.total_supply
+				var price30 = response.traits
+				for (var i = 0; i < response.traits.length; i++) {
+					trait = response.traits[i];
+					traitcount = trait.trait_count
+					rarityperc = traitcount / supply
+					rarityscore = 1 / rarityperc
+					weight = weight + rarityscore
+					//console.log(key);
+				}
+				$("#price30collimg").append(weight.toFixed(2))
+				//document.getElementById('price30collimg').src = price30
+			}
+		}			
+				
+	function mainApp30() {
+            if (Notification.permission !== "denied") {
+                Notification.requestPermission(function (permission) {});
+              }
+				xhr30.open('GET', 'https://api.opensea.io/api/v1/asset/0xb5643598496b159303c67bd0d30730713f5aad04/3152', true)
+                xhr30.send();
+                xhr30.onreadystatechange = processRequest;
+        };
+        mainApp30();
+	</script>
+	
+				<script>
+	
+	 var xhr30 = new XMLHttpRequest();
+
+        function processRequest(e) {
+             if (xhr30.readyState == 4 && xhr30.status == 200) {
+                var response = JSON.parse(xhr30.responseText);
+                console.log(response);
+				var trait
+				var traitcount
+				var weight = 0
+				var rarityperc
+				var rarityscore
+				//var price30 = response.collection.image_url
+				var supply = response.collection.stats.total_supply
+				var price30 = response.traits
+				for (var i = 0; i < response.traits.length; i++) {
+					trait = response.traits[i];
+					traitcount = trait.trait_count
+					rarityperc = traitcount / supply
+					rarityscore = 1 / rarityperc
+					weight = weight + rarityscore
+					//console.log(key);
+				}
+				$("#wow2").append(weight.toFixed(2))
+				//document.getElementById('price30collimg').src = price30
+			}
+		}			
+				
+	function mainApp30() {
+            if (Notification.permission !== "denied") {
+                Notification.requestPermission(function (permission) {});
+              }
+				xhr30.open('GET', 'https://api.opensea.io/api/v1/asset/0xa872947e420fc87d0ad56b6c296439f55c3768dc/12893', true)
+                xhr30.send();
+                xhr30.onreadystatechange = processRequest;
+        };
+        mainApp30();
+	</script>
+	
+				<script>
+	
+	 var xhr31 = new XMLHttpRequest();
+
+        function processRequest(e) {
+             if (xhr31.readyState == 4 && xhr31.status == 200) {
+                var response = JSON.parse(xhr31.responseText);
+                console.log(response);
+				var trait
+				var traitcount
+				var weight = 0
+				var rarityperc
+				var rarityscore
+				//var price31 = response.collection.image_url
+				var supply = response.collection.stats.total_supply
+				var price31 = response.traits
+				for (var i = 0; i < response.traits.length; i++) {
+					trait = response.traits[i];
+					traitcount = trait.trait_count
+					rarityperc = traitcount / supply
+					rarityscore = 1 / rarityperc
+					weight = weight + rarityscore
+					//console.log(key);
+				}
+				$("#jean1").append(weight.toFixed(2))
+				//document.getElementById('price31collimg').src = price31
+			}
+		}			
+				
+	function mainApp31() {
+            if (Notification.permission !== "denied") {
+                Notification.requestPermission(function (permission) {});
+              }
+				xhr31.open('GET', 'https://api.opensea.io/api/v1/asset/0x20bd0551f05dc40117d6b91dfa9f67d25307d1d8/5036', true)
+                xhr31.send();
+                xhr31.onreadystatechange = processRequest;
+        };
+        mainApp31();
+	</script>
+	
+				<script>
+	
+	 var xhr32 = new XMLHttpRequest();
+
+        function processRequest(e) {
+             if (xhr32.readyState == 4 && xhr32.status == 200) {
+                var response = JSON.parse(xhr32.responseText);
+                console.log(response);
+				var trait
+				var traitcount
+				var weight = 0
+				var rarityperc
+				var rarityscore
+				//var price32 = response.collection.image_url
+				var supply = response.collection.stats.total_supply
+				var price32 = response.traits
+				for (var i = 0; i < response.traits.length; i++) {
+					trait = response.traits[i];
+					traitcount = trait.trait_count
+					rarityperc = traitcount / supply
+					rarityscore = 1 / rarityperc
+					weight = weight + rarityscore
+					//console.log(key);
+				}
+				$("#jean2").append(weight.toFixed(2))
+				//document.getElementById('price32collimg').src = price32
+			}
+		}			
+				
+	function mainApp32() {
+            if (Notification.permission !== "denied") {
+                Notification.requestPermission(function (permission) {});
+              }
+				xhr32.open('GET', 'https://api.opensea.io/api/v1/asset/0x20bd0551f05dc40117d6b91dfa9f67d25307d1d8/818', true)
+                xhr32.send();
+                xhr32.onreadystatechange = processRequest;
+        };
+        mainApp32();
+	</script>
+	
+	<script>
+	/* 
+	Get etherscan account balance: https://api.etherscan.io/api?module=account&action=balance&address=0xBB9bc244D798123fDe783fCc1C72d3Bb8C189413&apikey=2FV6BTX1X7TWEQEDYGR9C2F6I1VQAQ6519
+	Get a list of "ERC20 - Token Transfer Events" by Address: https://api.etherscan.io/api?module=account&action=tokentx&address=0xBB9bc244D798123fDe783fCc1C72d3Bb8C189413&apikey=2FV6BTX1X7TWEQEDYGR9C2F6I1VQAQ6519
+	Logs - https://api.etherscan.io/api?module=logs&action=getLogs&address=0x14d312ac2bfc95d9bbefa87deb1d3cfcf69980de
+	Token supply: https://api.etherscan.io/api?module=stats&action=tokensupply&contractaddress=0x14d312ac2bfc95d9bbefa87deb1d3cfcf69980de&apikey=2FV6BTX1X7TWEQEDYGR9C2F6I1VQAQ6519
+	*/
+	</script>
+</body>
+</html>
