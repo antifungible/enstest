@@ -17,11 +17,10 @@
     <link type="text/css" rel="stylesheet" href="https://pubnub.github.io/eon/v/eon/1.0.0/eon.css"/>
 <!--
 
-Created July 14 2022
+Created August 3 2022
 
 -->
-    <!-- @dev reload the page every 20 seconds -->
-    <meta http-equiv="refresh" content="20" />
+
 	 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 	 <script>
       "use strict"
@@ -85,7 +84,7 @@ Created July 14 2022
     </script>
 </head>
 
-<body onload="change_time()">
+<body>
     <div class="tm-container">        
         <div>
             <div class="tm-row pt-4">
@@ -117,6 +116,10 @@ Created July 14 2022
 				</td>
 				<td style="padding:10px;font-color:white;color:white;border:white 1px solid;"><a href="nftrarity.html" style="color:white;">
 				My NFT Rarity
+				</a>
+				</td>
+				<td style="padding:10px;font-color:white;color:white;border:white 1px solid;"><a href="raritychecker.html" style="color:white;">
+				Check NFT Rarity
 				</a>
 				</td>
 				</tr>
@@ -216,16 +219,21 @@ Created July 14 2022
             <div class="tm-row" style="margin-top:-255px;">
                 <div class="tm-col-left"></div>
                 <main class="tm-col-right">
-                   <table style="background-color:white;color:black;margin-top:-155px;margin-left:-100px;">
-				   		 
 
-					  
-				   </table>
+				   		 
+  <label for="addy">Collection Contract Address:</label>
+  <input type="text" style="font-size:10pt;width:350px;" id="addy" name="addy"><br><br>
+  <label for="tokenid">Token ID:</label>
+  <input type="text" style="font-size:10pt;width:80px;" id="tokenid" name="tokenid"><br><br>
+	<button onclick="mainApp23(document.getElementById('addy').value,document.getElementById('tokenid').value)">Check Rarity</button>
+					 <br/><br/>
+<div id="price23colltest" style="font-size:30pt;"></div>
                 </main>
             </div>
         </div>   
-		
+		 
 <div style="padding-left:20px;font-style:italic;font-size:8pt;margin-top:200px;">Updated every 20 seconds...</div>
+
         <div class="tm-row">
             <!--div class="tm-col-left text-center">            
                 <ul class="tm-bg-controls-wrapper">
@@ -325,750 +333,57 @@ function showSlides() {
 	
 		
 	
-	<script>
-	
-	 var xhr2 = new XMLHttpRequest();	
-			
-		function processRequest(e) {
-             if (xhr2.readyState == 4 && xhr2.status == 200) {
-                var response = JSON.parse(xhr2.responseText);
-                console.log(response);
-				
-				var price2 = response.stats.floor_price.toFixed(3)
-				$("#price2").append(price2)
-				var change2 = response.stats.one_day_change.toFixed(2)
-				$("#change2").append(change2)
-				var anotherchange2 = response.stats.seven_day_change.toFixed(2)
-				$("#anotherchange2").append(anotherchange2)
-				var owners2 = response.stats.num_owners.toFixed(0)
-				$("#owners2").append(owners2)
-				var count2 = response.stats.total_supply.toFixed(0)
-				$("#count2").append(count2)
-				var thirtydaychange2 = response.stats.thirty_day_change.toFixed(2)
-				$("#thirtydaychange2").append(thirtydaychange2)
-				var onedayavg2 = response.stats.one_day_average_price.toFixed(2)
-				$("#onedayavg2").append(onedayavg2)
-				var sevendayavg2 = response.stats.seven_day_average_price.toFixed(2)
-				$("#sevendayavg2").append(sevendayavg2)
-				var monthavg2 = response.stats.thirty_day_average_price.toFixed(2)
-				$("#monthavg2").append(monthavg2)
-			}
-		}
-		
-	function mainApp2() {
-            if (Notification.permission !== "denied") {
-                Notification.requestPermission(function (permission) {});
-              }
-				xhr2.open('GET', 'https://api.opensea.io/api/v1/collection/yoloholiday/stats/?format=json', true)
-                xhr2.send();
-                xhr2.onreadystatechange = processRequest;			
-        };
-	
-        mainApp2();		
-	</script>
-	
-	
-	<script>
-	
-	 var xhr3 = new XMLHttpRequest();
-        
-        var pointLimit = 100;
-        var useLabels = false;
-
-        function processRequest(e) {
-             if (xhr3.readyState == 4 && xhr3.status == 200) {
-                var response = JSON.parse(xhr3.responseText);
-                console.log(response);
-				
-				var price3 = response.stats.floor_price.toFixed(3)
-				$("#price3").append(price3)
-				var change3 = response.stats.one_day_change.toFixed(2)
-				$("#change3").append(change3)
-				var anotherchange3 = response.stats.seven_day_change.toFixed(2)
-				$("#anotherchange3").append(anotherchange3)
-				var owners3 = response.stats.num_owners.toFixed(0)
-				$("#owners3").append(owners3)
-				var count3 = response.stats.total_supply.toFixed(0)
-				$("#count3").append(count3)
-				var thirtydaychange3 = response.stats.thirty_day_change.toFixed(2)
-				$("#thirtydaychange3").append(thirtydaychange3)
-				var onedayavg3 = response.stats.one_day_average_price.toFixed(2)
-				$("#onedayavg3").append(onedayavg3)
-				var sevendayavg3 = response.stats.seven_day_average_price.toFixed(2)
-				$("#sevendayavg3").append(sevendayavg3)
-				var monthavg3 = response.stats.thirty_day_average_price.toFixed(2)
-				$("#monthavg3").append(monthavg3)
-			}
-		}			
-				
-	function mainApp3() {
-            if (Notification.permission !== "denied") {
-                Notification.requestPermission(function (permission) {});
-              }
-				xhr3.open('GET', 'https://api.opensea.io/api/v1/collection/world-of-women-galaxy/stats/?format=json', true)
-                xhr3.send();
-                xhr3.onreadystatechange = processRequest;
-        };
-        mainApp3();
-	</script>
-	
-	<script>
-	
-	 var xhr4 = new XMLHttpRequest();
-
-        function processRequest(e) {
-             if (xhr4.readyState == 4 && xhr4.status == 200) {
-                var response = JSON.parse(xhr4.responseText);
-                console.log(response);
-				
-				var price4 = response.stats.floor_price.toFixed(3)
-				$("#price4").append(price4)
-				var change4 = response.stats.one_day_change.toFixed(2)
-				$("#change4").append(change4)
-				var anotherchange4 = response.stats.seven_day_change.toFixed(2)
-				$("#anotherchange4").append(anotherchange4)
-				var owners4 = response.stats.num_owners.toFixed(0)
-				$("#owners4").append(owners4)
-				var count4 = response.stats.total_supply.toFixed(0)
-				$("#count4").append(count4)
-				var thirtydaychange4 = response.stats.thirty_day_change.toFixed(2)
-				$("#thirtydaychange4").append(thirtydaychange4)
-				var onedayavg4 = response.stats.one_day_average_price.toFixed(2)
-				$("#onedayavg4").append(onedayavg4)
-				var sevendayavg4 = response.stats.seven_day_average_price.toFixed(2)
-				$("#sevendayavg4").append(sevendayavg4)
-				var monthavg4 = response.stats.thirty_day_average_price.toFixed(2)
-				$("#monthavg4").append(monthavg4)
-			}
-		}			
-				
-	function mainApp4() {
-            if (Notification.permission !== "denied") {
-                Notification.requestPermission(function (permission) {});
-              }
-				xhr4.open('GET', 'https://api.opensea.io/api/v1/collection/lovelesscitymetropass/stats/?format=json', true)
-                xhr4.send();
-                xhr4.onreadystatechange = processRequest;
-        };
-        mainApp4();
-	</script>
-	
-	
-	<script>
-	
-	 var xhr5 = new XMLHttpRequest();
-
-        function processRequest(e) {
-             if (xhr5.readyState == 4 && xhr5.status == 200) {
-                var response = JSON.parse(xhr5.responseText);
-                console.log(response);
-				
-				var price5 = response.stats.floor_price.toFixed(3)
-				$("#price5").append(price5)
-				var change5 = response.stats.one_day_change.toFixed(2)
-				$("#change5").append(change5)
-				var anotherchange5 = response.stats.seven_day_change.toFixed(2)
-				$("#anotherchange5").append(anotherchange5)
-				var owners5 = response.stats.num_owners.toFixed(0)
-				$("#owners5").append(owners5)
-				var count5 = response.stats.total_supply.toFixed(0)
-				$("#count5").append(count5)
-				var thirtydaychange5 = response.stats.thirty_day_change.toFixed(2)
-				$("#thirtydaychange5").append(thirtydaychange5)
-				var onedayavg5 = response.stats.one_day_average_price.toFixed(2)
-				$("#onedayavg5").append(onedayavg5)
-				var sevendayavg5 = response.stats.seven_day_average_price.toFixed(2)
-				$("#sevendayavg5").append(sevendayavg5)
-				var monthavg5 = response.stats.thirty_day_average_price.toFixed(2)
-				$("#monthavg5").append(monthavg5)
-			}
-		}			
-				
-	function mainApp5() {
-            if (Notification.permission !== "denied") {
-                Notification.requestPermission(function (permission) {});
-              }
-				xhr5.open('GET', 'https://api.opensea.io/api/v1/collection/lovelesscityabnormaljean/stats/?format=json', true)
-                xhr5.send();
-                xhr5.onreadystatechange = processRequest;
-        };
-        mainApp5();
-	</script>
 	
 		<script>
-	
-	 var xhr6 = new XMLHttpRequest();
-
-        function processRequest(e) {
-             if (xhr6.readyState == 4 && xhr6.status == 200) {
-                var response = JSON.parse(xhr6.responseText);
-                console.log(response);
-				
-				var price6 = response.stats.floor_price.toFixed(3)
-				$("#price6").append(price6)
-				var change6 = response.stats.one_day_change.toFixed(2)
-				$("#change6").append(change6)
-				var anotherchange6 = response.stats.seven_day_change.toFixed(2)
-				$("#anotherchange6").append(anotherchange6)
-				var owners6 = response.stats.num_owners.toFixed(0)
-				$("#owners6").append(owners6)
-				var count6 = response.stats.total_supply.toFixed(0)
-				$("#count6").append(count6)
-				var thirtydaychange6 = response.stats.thirty_day_change.toFixed(2)
-				$("#thirtydaychange6").append(thirtydaychange6)
-				var onedayavg6 = response.stats.one_day_average_price.toFixed(2)
-				$("#onedayavg6").append(onedayavg6)
-				var sevendayavg6 = response.stats.seven_day_average_price.toFixed(2)
-				$("#sevendayavg6").append(sevendayavg6)
-				var monthavg6 = response.stats.thirty_day_average_price.toFixed(2)
-				$("#monthavg6").append(monthavg6)
-			}
-		}			
-				
-	function mainApp6() {
-            if (Notification.permission !== "denied") {
-                Notification.requestPermission(function (permission) {});
-              }
-				xhr6.open('GET', 'https://api.opensea.io/api/v1/collection/petabytes/stats/?format=json', true)
-                xhr6.send();
-                xhr6.onreadystatechange = processRequest;
-        };
-        mainApp6();
-	</script>
-	
-	<script>
-	
-	 var xhr7 = new XMLHttpRequest();
-        
-        function processRequest(e) {
-             if (xhr7.readyState == 4 && xhr7.status == 200) {
-                var response = JSON.parse(xhr7.responseText);
-                console.log(response);
-				
-				var price7 = response.stats.floor_price.toFixed(3)
-				$("#price7").append(price7)
-				var change7 = response.stats.one_day_change.toFixed(2)
-				$("#change7").append(change7)
-				var anotherchange7 = response.stats.seven_day_change.toFixed(2)
-				$("#anotherchange7").append(anotherchange7)
-				var owners7 = response.stats.num_owners.toFixed(0)
-				$("#owners7").append(owners7)
-				var count7 = response.stats.total_supply.toFixed(0)
-				$("#count7").append(count7)
-				var thirtydaychange7 = response.stats.thirty_day_change.toFixed(2)
-				$("#thirtydaychange7").append(thirtydaychange7)
-				var onedayavg7 = response.stats.one_day_average_price.toFixed(2)
-				$("#onedayavg7").append(onedayavg7)
-				var sevendayavg7 = response.stats.seven_day_average_price.toFixed(2)
-				$("#sevendayavg7").append(sevendayavg7)
-				var monthavg7 = response.stats.thirty_day_average_price.toFixed(2)
-				$("#monthavg7").append(monthavg7)
-			}
-		}			
-				
-	function mainApp7() {
-            if (Notification.permission !== "denied") {
-                Notification.requestPermission(function (permission) {});
-              }
-				xhr7.open('GET', 'https://api.opensea.io/api/v1/collection/the-plague/stats/?format=json', true)
-                xhr7.send();
-                xhr7.onreadystatechange = processRequest;
-        };
-        mainApp7();
-	</script>
-	
-	<script>
-	
-	 var xhr8 = new XMLHttpRequest();
-
-        function processRequest(e) {
-             if (xhr8.readyState == 4 && xhr8.status == 200) {
-                var response = JSON.parse(xhr8.responseText);
-                console.log(response);
-				
-				var price8 = response.stats.floor_price.toFixed(3)
-				$("#price8").append(price8)
-				var change8 = response.stats.one_day_change.toFixed(2)
-				$("#change8").append(change8)
-				var anotherchange8 = response.stats.seven_day_change.toFixed(2)
-				$("#anotherchange8").append(anotherchange8)
-				var owners8 = response.stats.num_owners.toFixed(0)
-				$("#owners8").append(owners8)
-				var count8 = response.stats.total_supply.toFixed(0)
-				$("#count8").append(count8)
-				var thirtydaychange8 = response.stats.thirty_day_change.toFixed(2)
-				$("#thirtydaychange8").append(thirtydaychange8)
-				var onedayavg8 = response.stats.one_day_average_price.toFixed(2)
-				$("#onedayavg8").append(onedayavg8)
-				var sevendayavg8 = response.stats.seven_day_average_price.toFixed(2)
-				$("#sevendayavg8").append(sevendayavg8)
-				var monthavg8 = response.stats.thirty_day_average_price.toFixed(2)
-				$("#monthavg8").append(monthavg8)
-			}
-		}			
-				
-	function mainApp8() {
-            if (Notification.permission !== "denied") {
-                Notification.requestPermission(function (permission) {});
-              }
-				xhr8.open('GET', 'https://api.opensea.io/api/v1/collection/soulda16club/stats/?format=json', true)
-                xhr8.send();
-                xhr8.onreadystatechange = processRequest;
-        };
-        mainApp8();
-	</script>
-	
-		<script>
-	
-	 var xhr9 = new XMLHttpRequest();
-
-        function processRequest(e) {
-             if (xhr9.readyState == 4 && xhr9.status == 200) {
-                var response = JSON.parse(xhr9.responseText);
-                console.log(response);
-				
-				var price9 = response.stats.floor_price.toFixed(3)
-				$("#price9").append(price9)
-				var change9 = response.stats.one_day_change.toFixed(2)
-				$("#change9").append(change9)
-				var anotherchange9 = response.stats.seven_day_change.toFixed(2)
-				$("#anotherchange9").append(anotherchange9)
-				var owners9 = response.stats.num_owners.toFixed(0)
-				$("#owners9").append(owners9)
-				var count9 = response.stats.total_supply.toFixed(0)
-				$("#count9").append(count9)
-				var thirtydaychange9 = response.stats.thirty_day_change.toFixed(2)
-				$("#thirtydaychange9").append(thirtydaychange9)
-				var onedayavg9 = response.stats.one_day_average_price.toFixed(2)
-				$("#onedayavg9").append(onedayavg9)
-				var sevendayavg9 = response.stats.seven_day_average_price.toFixed(2)
-				$("#sevendayavg9").append(sevendayavg9)
-				var monthavg9 = response.stats.thirty_day_average_price.toFixed(2)
-				$("#monthavg9").append(monthavg9)
-			}
-		}			
-				
-	function mainApp9() {
-            if (Notification.permission !== "denied") {
-                Notification.requestPermission(function (permission) {});
-              }
-				xhr9.open('GET', 'https://api.opensea.io/api/v1/collection/yearofthewoman/stats/?format=json', true)
-                xhr9.send();
-                xhr9.onreadystatechange = processRequest;
-        };
-        mainApp9();
-	</script>
-	
-		<script>
-	
-	 var xhr10 = new XMLHttpRequest();
-        
-        function processRequest(e) {
-             if (xhr10.readyState == 4 && xhr10.status == 200) {
-                var response = JSON.parse(xhr10.responseText);
-                console.log(response);
-				
-				var price10 = response.stats.floor_price.toFixed(3)
-				$("#price10").append(price10)
-				var change10 = response.stats.one_day_change.toFixed(2)
-				$("#change10").append(change10)
-				var anotherchange10 = response.stats.seven_day_change.toFixed(2)
-				$("#anotherchange10").append(anotherchange10)
-				var owners10 = response.stats.num_owners.toFixed(0)
-				$("#owners10").append(owners10)
-				var count10 = response.stats.total_supply.toFixed(0)
-				$("#count10").append(count10)
-				var thirtydaychange10 = response.stats.thirty_day_change.toFixed(2)
-				$("#thirtydaychange10").append(thirtydaychange10)
-				var onedayavg10 = response.stats.one_day_average_price.toFixed(2)
-				$("#onedayavg10").append(onedayavg10)
-				var sevendayavg10 = response.stats.seven_day_average_price.toFixed(2)
-				$("#sevendayavg10").append(sevendayavg10)
-				var monthavg10 = response.stats.thirty_day_average_price.toFixed(2)
-				$("#monthavg10").append(monthavg10)
-			}
-		}			
-				
-	function mainApp10() {
-            if (Notification.permission !== "denied") {
-                Notification.requestPermission(function (permission) {});
-              }
-				xhr10.open('GET', 'https://api.opensea.io/api/v1/collection/notyourbro/stats/?format=json', true)
-                xhr10.send();
-                xhr10.onreadystatechange = processRequest;
-        };
-        mainApp10();
-	</script>
-	
-		<script>
-	
-	 var xhr11 = new XMLHttpRequest();
-
-        function processRequest(e) {
-             if (xhr11.readyState == 4 && xhr11.status == 200) {
-                var response = JSON.parse(xhr11.responseText);
-                console.log(response);
-				
-				var price11 = response.stats.floor_price.toFixed(3)
-				$("#price11").append(price11)
-				var change11 = response.stats.one_day_change.toFixed(2)
-				$("#change11").append(change11)
-				var anotherchange11 = response.stats.seven_day_change.toFixed(2)
-				$("#anotherchange11").append(anotherchange11)
-				var owners11 = response.stats.num_owners.toFixed(0)
-				$("#owners11").append(owners11)
-				var count11 = response.stats.total_supply.toFixed(0)
-				$("#count11").append(count11)
-				var thirtydaychange11 = response.stats.thirty_day_change.toFixed(2)
-				$("#thirtydaychange11").append(thirtydaychange11)
-				var onedayavg11 = response.stats.one_day_average_price.toFixed(2)
-				$("#onedayavg11").append(onedayavg11)
-				var sevendayavg11 = response.stats.seven_day_average_price.toFixed(2)
-				$("#sevendayavg11").append(sevendayavg11)
-				var monthavg11 = response.stats.thirty_day_average_price.toFixed(2)
-				$("#monthavg11").append(monthavg11)
-			}
-		}			
-				
-	function mainApp11() {
-            if (Notification.permission !== "denied") {
-                Notification.requestPermission(function (permission) {});
-              }
-				xhr11.open('GET', 'https://api.opensea.io/api/v1/collection/womenandweapons/stats/?format=json', true)
-                xhr11.send();
-                xhr11.onreadystatechange = processRequest;
-        };
-        mainApp11();
-	</script>
-	
-	
-	<script>
-	
-	 var xhr12 = new XMLHttpRequest();
-
-        function processRequest(e) {
-             if (xhr12.readyState == 4 && xhr12.status == 200) {
-                var response = JSON.parse(xhr12.responseText);
-                console.log(response);
-				
-				var price12 = response.collection.image_url
-				//var twitter12 = response.collection.twitter_username
-				//$("#twitter12").append(twitter12)
-				document.getElementById('price2collimg').src = price12
-				
-			}
-		}			
-				
-	function mainApp12() {
-            if (Notification.permission !== "denied") {
-                Notification.requestPermission(function (permission) {});
-              }
-				xhr12.open('GET', 'https://api.opensea.io/api/v1/collection/yoloholiday/?format=json', true)
-                xhr12.send();
-                xhr12.onreadystatechange = processRequest;
-        };
-        mainApp12();
-	</script>
-	
-	<script>
-	
-	 var xhr13 = new XMLHttpRequest();
-
-        function processRequest(e) {
-             if (xhr13.readyState == 4 && xhr13.status == 200) {
-                var response = JSON.parse(xhr13.responseText);
-                console.log(response);
-				
-				var price13 = response.collection.image_url
-				document.getElementById('price11collimg').src = price13
-			}
-		}			
-				
-	function mainApp13() {
-            if (Notification.permission !== "denied") {
-                Notification.requestPermission(function (permission) {});
-              }
-				xhr13.open('GET', 'https://api.opensea.io/api/v1/collection/womenandweapons/?format=json', true)
-                xhr13.send();
-                xhr13.onreadystatechange = processRequest;
-        };
-        mainApp13();
-	</script>
-	
-	<script>
-	
-	 var xhr14 = new XMLHttpRequest();
-
-        function processRequest(e) {
-             if (xhr14.readyState == 4 && xhr14.status == 200) {
-                var response = JSON.parse(xhr14.responseText);
-                console.log(response);
-				
-				var price14 = response.collection.image_url
-				//$("price2collimg").append(price14)
-				document.getElementById('price10collimg').src = price14
-			}
-		}			
-				
-	function mainApp14() {
-            if (Notification.permission !== "denied") {
-                Notification.requestPermission(function (permission) {});
-              }
-				xhr14.open('GET', 'https://api.opensea.io/api/v1/collection/notyourbro/?format=json', true)
-                xhr14.send();
-                xhr14.onreadystatechange = processRequest;
-        };
-        mainApp14();
-	</script>
-	
-	<script>
-	
-	 var xhr15 = new XMLHttpRequest();
-
-        function processRequest(e) {
-             if (xhr15.readyState == 4 && xhr15.status == 200) {
-                var response = JSON.parse(xhr15.responseText);
-                console.log(response);
-				
-				var price15 = response.collection.image_url
-				//$("price2collimg").append(price15)
-				document.getElementById('price7collimg').src = price15
-			}
-		}			
-				
-	function mainApp15() {
-            if (Notification.permission !== "denied") {
-                Notification.requestPermission(function (permission) {});
-              }
-				xhr15.open('GET', 'https://api.opensea.io/api/v1/collection/the-plague/?format=json', true)
-                xhr15.send();
-                xhr15.onreadystatechange = processRequest;
-        };
-        mainApp15();
-	</script>
-	
-	<script>
-	
-	 var xhr16 = new XMLHttpRequest();
-
-        function processRequest(e) {
-             if (xhr16.readyState == 4 && xhr16.status == 200) {
-                var response = JSON.parse(xhr16.responseText);
-                console.log(response);
-				
-				var price16 = response.collection.image_url
-				//$("price2collimg").append(price16)
-				document.getElementById('price9collimg').src = price16
-			}
-		}			
-				
-	function mainApp16() {
-            if (Notification.permission !== "denied") {
-                Notification.requestPermission(function (permission) {});
-              }
-				xhr16.open('GET', 'https://api.opensea.io/api/v1/collection/yearofthewoman/?format=json', true)
-                xhr16.send();
-                xhr16.onreadystatechange = processRequest;
-        };
-        mainApp16();
-	</script>
-	
-	<script>
-	
-	 var xhr17 = new XMLHttpRequest();
-
-        function processRequest(e) {
-             if (xhr17.readyState == 4 && xhr17.status == 200) {
-                var response = JSON.parse(xhr17.responseText);
-                console.log(response);
-				
-				var price17 = response.collection.image_url
-				//$("price2collimg").append(price17)
-				document.getElementById('price8collimg').src = price17
-			}
-		}			
-				
-	function mainApp17() {
-            if (Notification.permission !== "denied") {
-                Notification.requestPermission(function (permission) {});
-              }
-				xhr17.open('GET', 'https://api.opensea.io/api/v1/collection/soulda16club/?format=json', true)
-                xhr17.send();
-                xhr17.onreadystatechange = processRequest;
-        };
-        mainApp17();
-	</script>
-	
-	<script>
-	
-	 var xhr18 = new XMLHttpRequest();
-
-        function processRequest(e) {
-             if (xhr18.readyState == 4 && xhr18.status == 200) {
-                var response = JSON.parse(xhr18.responseText);
-                console.log(response);
-				
-				var price18 = response.collection.image_url
-				//$("price2collimg").append(price18)
-				document.getElementById('price6collimg').src = price18
-			}
-		}			
-				
-	function mainApp18() {
-            if (Notification.permission !== "denied") {
-                Notification.requestPermission(function (permission) {});
-              }
-				xhr18.open('GET', 'https://api.opensea.io/api/v1/collection/petabytes/?format=json', true)
-                xhr18.send();
-                xhr18.onreadystatechange = processRequest;
-        };
-        mainApp18();
-	</script>
-	
-	<script>
-	
-	 var xhr19 = new XMLHttpRequest();
-
-        function processRequest(e) {
-             if (xhr19.readyState == 4 && xhr19.status == 200) {
-                var response = JSON.parse(xhr19.responseText);
-                console.log(response);
-				
-				var price19 = response.collection.image_url
-				//$("price2collimg").append(price19)
-				document.getElementById('price5collimg').src = price19
-			}
-		}			
-				
-	function mainApp19() {
-            if (Notification.permission !== "denied") {
-                Notification.requestPermission(function (permission) {});
-              }
-				xhr19.open('GET', 'https://api.opensea.io/api/v1/collection/lovelesscityabnormaljean/?format=json', true)
-                xhr19.send();
-                xhr19.onreadystatechange = processRequest;
-        };
-        mainApp19();
-	</script>
-	
-	<script>
-	
-	 var xhr20 = new XMLHttpRequest();
-
-        function processRequest(e) {
-             if (xhr20.readyState == 4 && xhr20.status == 200) {
-                var response = JSON.parse(xhr20.responseText);
-                console.log(response);
-				
-				var price20 = response.collection.image_url
-				//$("price2collimg").append(price20)
-				document.getElementById('price4collimg').src = price20
-			}
-		}			
-				
-	function mainApp20() {
-            if (Notification.permission !== "denied") {
-                Notification.requestPermission(function (permission) {});
-              }
-				xhr20.open('GET', 'https://api.opensea.io/api/v1/collection/lovelesscitymetropass/?format=json', true)
-                xhr20.send();
-                xhr20.onreadystatechange = processRequest;
-        };
-        mainApp20();
-	</script>
-	
-	<script>
-	
-	 var xhr21 = new XMLHttpRequest();
-
-        function processRequest(e) {
-             if (xhr21.readyState == 4 && xhr21.status == 200) {
-                var response = JSON.parse(xhr21.responseText);
-                console.log(response);
-				
-				var price21 = response.collection.image_url
-				//$("price2collimg").append(price21)
-				document.getElementById('price3collimg').src = price21
-			}
-		}			
-				
-	function mainApp21() {
-            if (Notification.permission !== "denied") {
-                Notification.requestPermission(function (permission) {});
-              }
-				xhr21.open('GET', 'https://api.opensea.io/api/v1/collection/world-of-women-galaxy/?format=json', true)
-                xhr21.send();
-                xhr21.onreadystatechange = processRequest;
-        };
-        mainApp21();
-	</script>
-	
-			<script>
-	
-	 var xhr22 = new XMLHttpRequest();
-        
-        function processRequest(e) {
-             if (xhr22.readyState == 4 && xhr22.status == 200) {
-                var response = JSON.parse(xhr22.responseText);
-                console.log(response);
-				
-				var price22 = response.stats.floor_price.toFixed(3)
-				$("#price22").append(price22)
-				var change22 = response.stats.one_day_change.toFixed(2)
-				$("#change22").append(change22)
-				var anotherchange22 = response.stats.seven_day_change.toFixed(2)
-				$("#anotherchange22").append(anotherchange22)
-				var owners22 = response.stats.num_owners.toFixed(0)
-				$("#owners22").append(owners22)
-				var count22 = response.stats.total_supply.toFixed(0)
-				$("#count22").append(count22)
-				var thirtydaychange22 = response.stats.thirty_day_change.toFixed(2)
-				$("#thirtydaychange22").append(thirtydaychange22)
-				var onedayavg22 = response.stats.one_day_average_price.toFixed(2)
-				$("#onedayavg22").append(onedayavg22)
-				var sevendayavg22 = response.stats.seven_day_average_price.toFixed(2)
-				$("#sevendayavg22").append(sevendayavg22)
-				var monthavg22 = response.stats.thirty_day_average_price.toFixed(2)
-				$("#monthavg22").append(monthavg22)
-			}
-		}			
-				
-	function mainApp22() {
-            if (Notification.permission !== "denied") {
-                Notification.requestPermission(function (permission) {});
-              }
-				xhr22.open('GET', 'https://api.opensea.io/api/v1/collection/stickmentoys/stats/?format=json', true)
-                xhr22.send();
-                xhr22.onreadystatechange = processRequest;
-        };
-        mainApp22();
-	</script>
-	
-		<script>
-	
+	document.getElementById("addy").defaultValue = "Test";
 	 var xhr23 = new XMLHttpRequest();
 
-        function processRequest(e) {
-             if (xhr23.readyState == 4 && xhr23.status == 200) {
+        function processRequest2(e) {
+             //if (xhr23.readyState == 4 && xhr23.status == 200) {
                 var response = JSON.parse(xhr23.responseText);
                 console.log(response);
-				
-				var price23 = response.collection.image_url
-				//$("price2collimg").append(price23)
-				document.getElementById('price23collimg').src = price23
-			}
+				var supply = response.collection.stats.total_supply
+				var trait
+				var traitcount
+				var weight = 0
+				var rarityperc
+				var rarityscore
+				for (var i = 0; i < response.traits.length; i++) {
+					trait = response.traits[i];
+					traitcount = trait.trait_count
+					rarityperc = traitcount / supply
+					rarityscore = 1 / rarityperc
+					weight = weight + rarityscore
+					//console.log(key);
+				}
+				weight = weight.toFixed(2)
+				var weightstr = weight.toString()
+				//weightstr = weightstr.substring(0,weightstr.indexof("."))
+				$("#price23colltest").empty()
+				$("#price23colltest").append(weightstr)
+			//}
 		}			
 				
-	function mainApp23() {
-            if (Notification.permission !== "denied") {
-                Notification.requestPermission(function (permission) {});
-              }
-				xhr23.open('GET', 'https://api.opensea.io/api/v1/collection/stickmentoys/?format=json', true)
-                xhr23.send();
-                xhr23.onreadystatechange = processRequest;
+	function mainApp23(addy,tokenid) {
+	
+			var address = "https://api.opensea.io/api/v1/asset/" + addy + "/" + tokenid
+			if(document.getElementById("addy").value != "Test")
+			{
+				//$("#price23colltest").append(document.getElementById("addy").value)
+				if (Notification.permission !== "denied") {
+					Notification.requestPermission(function (permission) {});
+				  }
+					xhr23.open('GET', address, true)
+					//xhr23.open('GET', 'https://api.opensea.io/api/v1/asset/0x8c3fb10693b228e8b976ff33ce88f97ce2ea9563/7889', true)
+					xhr23.send();
+					xhr23.onreadystatechange = processRequest2;
+					//$("#price23colltest").append(address)
+			}
         };
-        mainApp23();
+        mainApp23(addy,tokenid);
 	</script>
+	
+
 	
 	<script>
 	/* 
