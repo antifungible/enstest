@@ -60,39 +60,19 @@ Created July 14 2022
         )
         var maxPriorityFeePerGas =
           response.blockPrices[0].estimatedPrices[0].maxPriorityFeePerGas
-        $("#maxPriorityFeePerGas").append(maxPriorityFeePerGas)
-        console.log(
-          "maxPriorityFeePerGas: " +
-            response.blockPrices[0].estimatedPrices[0].maxPriorityFeePerGas
-        )
-
-        /** @note  */
-        /** @returns 95.response  */
-        var content = response.blockPrices[0].estimatedPrices[2].price
-        $("#maxFeePerGas_95").append(content)
-        console.log(
-          "maxFeePerGas_95: " +
-            response.blockPrices[0].estimatedPrices[2].price
-        )
-        var maxPriorityFeePerGas_95 =
-          response.blockPrices[0].estimatedPrices[2].maxPriorityFeePerGas
-        $("#maxPriorityFeePerGas_95").append(maxPriorityFeePerGas)
-        console.log(
-          "maxPriorityFeePerGas_95: " +
-            response.blockPrices[0].estimatedPrices[2].maxPriorityFeePerGas
-        )
+		   )
       })
     </script>
 </head>
 
-<body onload="change_time()">
+<body>
     <div class="tm-container">        
         <div>
             <div class="tm-row pt-4">
                 <div class="tm-col-left">
                     <div class="tm-site-header media">
                         
-                       <div class="media-body" style="background-color:#333333;padding:10px;border:1px dotted turquoise;">
+                       <div class="media-body" style="background-color:#333333;padding:10px;border:1px dotted pink;">
                            <h1 class="tm-sitename text-uppercase" style="font-family:monospace;"><img src="img/WOWG.png" width=50 style="border: 2px white solid;"/>&nbsp;ANTIFUNGIBLE.ETH</h1>
                             <div style="font-size:14px; font-style: italic; margin-left: 70px;padding-left:0px; margin-top:-10px;font-family:Monospace;padding-bottom:5px;">0xFc03C7B95Fcd8a487aD0759f682078c739529D22</div>
 							<!-- Slideshow container -->
@@ -103,7 +83,7 @@ Created July 14 2022
 				  
 
 						
-                 <div class="tm-col-right">
+                <div class="tm-col-right">
 				<table style="background-color:#10a7e8;padding:0px;">
 				<tr>
 				<td style="padding:10px;font-color:white;color:white;border:white 1px solid;"><a href="index.html" style="color:white;">
@@ -117,6 +97,10 @@ Created July 14 2022
 				</td>
 				<td style="padding:10px;font-color:white;color:white;border:white 1px solid;"><a href="nftrarity.html" style="color:white;">
 				My NFT Rarity
+				</a>
+				</td>
+				<td style="padding:10px;font-color:white;color:white;border:white 1px solid;"><a href="raritychecker.html" style="color:white;">
+				Check NFT Rarity
 				</a>
 				</td>
 				</tr>
