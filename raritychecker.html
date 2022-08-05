@@ -356,11 +356,19 @@ function showSlides() {
 					weight = weight + rarityscore
 					//console.log(key);
 				}
-				weight = weight.toFixed(2)
-				var weightstr = weight.toString()
-				//weightstr = weightstr.substring(0,weightstr.indexof("."))
-				$("#price23colltest").empty()
-				$("#price23colltest").append(weightstr)
+				if(weight.toFixed(2) < 0 || weight.toFixed(2) > 1000000)
+				{
+					$("#price23colltest").empty()
+					$("#price23colltest").append("Not available yet")
+				}
+				else{
+					weight = weight.toFixed(2)
+					var weightstr = weight.toString()
+					//weightstr = weightstr.substring(0,weightstr.indexof("."))
+					$("#price23colltest").empty()
+					$("#price23colltest").append(weightstr)
+				}
+				
 			//}
 		}			
 				
