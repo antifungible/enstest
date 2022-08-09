@@ -236,7 +236,7 @@ Created July 14 2022
 						<tr><td style="padding:10px;border:1px dotted pink;font-size:8.5pt;"><a href="https://opensea.io/assets/ethereum/0x20bd0551f05dc40117d6b91dfa9f67d25307d1d8/818" target="_blank"><img src="img/anotherbeauty.jpg" width=100/></a></td><td id="jean2" style="padding:10px;border:1px dotted pink;font-size:8.5pt;"></td></tr>	
 						<tr><td style="padding:10px;border:1px dotted pink;font-size:8.5pt;"><a href="https://opensea.io/assets/ethereum/0x24832488049222007d86618160bae6f7cea9441f/1774" target="_blank"><img src="img/homeinvasionbear.png" width=100/></a></td><td id="bear" style="padding:10px;border:1px dotted pink;font-size:8.5pt;"></td></tr>
 						<tr><td style="padding:10px;border:1px dotted pink;font-size:8.5pt;"><a href="https://opensea.io/assets/ethereum/0x8c3fb10693b228e8b976ff33ce88f97ce2ea9563/7889" target="_blank"><img src="img/froggy.png" width=100/></a></td><td id="frog" style="padding:10px;border:1px dotted pink;font-size:8.5pt;"></td></tr>
-					  
+					  <tr><td style="padding:10px;border:1px dotted pink;font-size:8.5pt;"><a href="https://opensea.io/assets/ethereum/0x7c87b6ff9c2ec3466c6fac9b89bb58a4bf12a5bb/9261" target="_blank"><img src="img/notyourbro.png" width=100/></a></td><td id="bro" style="padding:10px;border:1px dotted pink;font-size:8.5pt;"></td></tr>
 				   </table>
                 </main>
             </div>
@@ -901,6 +901,46 @@ function showSlides() {
                 xhr35.onreadystatechange = processRequest;
         };
         mainApp35();
+	</script>
+	
+			<script>
+	
+	 var xhr36 = new XMLHttpRequest();
+
+        function processRequest(e) {
+             if (xhr36.readyState == 4 && xhr36.status == 200) {
+                var response = JSON.parse(xhr36.responseText);
+                console.log(response);
+				var trait
+				var traitcount
+				var weight = 0
+				var rarityperc
+				var rarityscore
+				//var price36 = response.collection.image_url
+				var supply = response.collection.stats.total_supply
+				var price36 = response.traits
+				for (var i = 0; i < response.traits.length; i++) {
+					trait = response.traits[i];
+					traitcount = trait.trait_count
+					rarityperc = traitcount / supply
+					rarityscore = 1 / rarityperc
+					weight = weight + rarityscore
+					//console.log(key);
+				}
+				$("#bro").append(weight.toFixed(2))
+				//document.getElementById('price36collimg').src = price36
+			}
+		}			
+				
+	function mainApp36() {
+            if (Notification.permission !== "denied") {
+                Notification.requestPermission(function (permission) {});
+              }
+				xhr36.open('GET', 'https://api.opensea.io/api/v1/asset/0x7c87b6ff9c2ec3466c6fac9b89bb58a4bf12a5bb/9261', true)
+                xhr36.send();
+                xhr36.onreadystatechange = processRequest;
+        };
+        mainApp36();
 	</script>
 	
 	
